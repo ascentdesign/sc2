@@ -51,7 +51,7 @@ export async function generateSnippet(
     ],
   });
 
-  const text = message.content[0].type === "text" ? message.content[0.text] : "";
+  const text = message.content[0].type === "text" ? message.content[0].text : "";
   return { snippet: text.trim() };
 }
 
@@ -171,7 +171,7 @@ export async function analyzeCadence(
     ],
   });
 
-  const text = message.content[0].type === "text" ? message.content[0.text] : "";
+  const text = message.content[0].type === "text" ? message.content[0].text : "";
 
   try {
     return JSON.parse(text);
