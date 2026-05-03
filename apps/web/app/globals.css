@@ -34,9 +34,32 @@
   border-color: var(--border);
 }
 
+/* Prevent blank screen - ensure body is always visible */
+html {
+  visibility: visible;
+  opacity: 1;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  min-height: 100vh;
+}
+
+/* Ensure Next.js root is visible */
+#__next {
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 100vh;
+}
+
+/* Force all motion divs to be visible */
+[style*="opacity: 0"][style*="transform"] {
+  opacity: 1 !important;
+  transform: none !important;
 }

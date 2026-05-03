@@ -1,0 +1,9 @@
+   ▲ Next.js 15.5.15 (Turbopack)
+   - Local:        http://localhost:5000
+   - Network:      http://192.168.56.1:5000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Compiled middleware in 281ms
+ ✓ Ready in 1788ms
+^C
