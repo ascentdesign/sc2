@@ -14,7 +14,6 @@ import {
   Calendar,
 } from "lucide-react";
 import Link from "next/link";
-import { Skeleton } from "../../../components/Skeleton";
 
 // ──────────────────────────────────────────────
 // Stats Card Component
@@ -83,7 +82,7 @@ function CadenceDistribution({
       else acc.quarterly++;
       return acc;
     },
-    { weekly: 0, biweekly: 0, monthly: 0, quarterly: 0 }
+    { weekly: 0, biweekly: 0, monthly: 0, quarterly: 0 },
   );
 
   const total = friends.length || 1;
@@ -136,11 +135,15 @@ function WeeklyActivity({
   for (let i = 6; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(date.getDate() - i);
-    const dayStart = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+    const dayStart = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+    ).getTime();
     const dayEnd = dayStart + 24 * 60 * 60 * 1000;
 
     const count = interactions.filter(
-      (i) => i.timestamp >= dayStart && i.timestamp < dayEnd
+      (i) => i.timestamp >= dayStart && i.timestamp < dayEnd,
     ).length;
 
     days.push({
@@ -209,9 +212,10 @@ export default function StatsPage() {
 
   // Calculate stats
   const totalFriends = friends?.length ?? 0;
-  const weeklyInteractions = interactions?.filter(
-    (i) => i.timestamp > Date.now() - 7 * 24 * 60 * 60 * 1000
-  ).length ?? 0;
+  const weeklyInteractions =
+    interactions?.filter(
+      (i) => i.timestamp > Date.now() - 7 * 24 * 60 * 60 * 1000,
+    ).length ?? 0;
   const totalInteractions = interactions?.length ?? 0;
 
   return (
@@ -344,7 +348,8 @@ export default function StatsPage() {
                 <span className="font-medium">
                   {snoozeStats && snoozeStats.totalRankings > 0
                     ? `${Math.round(
-                        (snoozeStats.totalSnoozes / snoozeStats.totalRankings) * 100
+                        (snoozeStats.totalSnoozes / snoozeStats.totalRankings) *
+                          100,
                       )}%`
                     : "0%"}
                 </span>

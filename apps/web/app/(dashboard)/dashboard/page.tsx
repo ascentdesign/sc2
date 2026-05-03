@@ -16,8 +16,14 @@ import {
   Loader2,
   Check,
 } from "lucide-react";
-import { getTimeOfDay, GREETING_DISPLAY, getStatusLabel, STATUS_LABEL_DISPLAY, STATUS_LABEL_COLOR } from "@stayclose/types";
-import { VoiceRecorder } from "../../components/VoiceRecorder";
+import {
+  getTimeOfDay,
+  GREETING_DISPLAY,
+  getStatusLabel,
+  STATUS_LABEL_DISPLAY,
+  STATUS_LABEL_COLOR,
+} from "@stayclose/types";
+import { VoiceRecorder } from "../../../../components/VoiceRecorder";
 
 // ──────────────────────────────────────────────
 // Types
@@ -165,9 +171,24 @@ function SnoozeSheet({
 
             <div className="space-y-2">
               {[
-                { value: "tomorrow" as const, label: "Tomorrow", sub: "Remind me tomorrow", icon: Clock },
-                { value: "this_weekend" as const, label: "This weekend", sub: "Remind me Saturday", icon: Clock },
-                { value: "next_week" as const, label: "Next week", sub: "Remind me in 7 days", icon: Clock },
+                {
+                  value: "tomorrow" as const,
+                  label: "Tomorrow",
+                  sub: "Remind me tomorrow",
+                  icon: Clock,
+                },
+                {
+                  value: "this_weekend" as const,
+                  label: "This weekend",
+                  sub: "Remind me Saturday",
+                  icon: Clock,
+                },
+                {
+                  value: "next_week" as const,
+                  label: "Next week",
+                  sub: "Remind me in 7 days",
+                  icon: Clock,
+                },
               ].map((option, index) => (
                 <motion.button
                   key={option.value}
@@ -228,12 +249,16 @@ function PostActionSheet({
 }) {
   const [noteText, setNoteText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
-  const [recordingData, setRecordingData] = useState<RecordingData | null>(null);
+  const [recordingData, setRecordingData] = useState<RecordingData | null>(
+    null,
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const createInteraction = useMutation(api.interactions.create);
-  const generateVoiceUploadUrl = useMutation(api.interactions.generateVoiceUploadUrl);
+  const generateVoiceUploadUrl = useMutation(
+    api.interactions.generateVoiceUploadUrl,
+  );
 
   const handleRecordingComplete = useCallback((blob: Blob, url: string) => {
     setRecordingData({ blob, url });
@@ -244,29 +269,32 @@ function PostActionSheet({
     console.error("Recording error:", error);
   }, []);
 
-  const uploadVoiceNote = useCallback(async (blob: Blob): Promise<string | undefined> => {
-    try {
-      const uploadUrl = await generateVoiceUploadUrl({});
+  const uploadVoiceNote = useCallback(
+    async (blob: Blob): Promise<string | undefined> => {
+      try {
+        const uploadUrl = await generateVoiceUploadUrl({});
 
-      const response = await fetch(uploadUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": blob.type || "audio/webm",
-        },
-        body: blob,
-      });
+        const response = await fetch(uploadUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": blob.type || "audio/webm",
+          },
+          body: blob,
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to upload voice note");
+        if (!response.ok) {
+          throw new Error("Failed to upload voice note");
+        }
+
+        const { storageId } = await response.json();
+        return storageId;
+      } catch (error) {
+        console.error("Failed to upload voice note:", error);
+        return undefined;
       }
-
-      const { storageId } = await response.json();
-      return storageId;
-    } catch (error) {
-      console.error("Failed to upload voice note:", error);
-      return undefined;
-    }
-  }, [generateVoiceUploadUrl]);
+    },
+    [generateVoiceUploadUrl],
+  );
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -308,12 +336,14 @@ function PostActionSheet({
     createInteraction({
       friend_id: friendId as any,
       type: interactionType as any,
-    }).then(() => {
-      setNoteText("");
-      setRecordingData(null);
-      setIsRecording(false);
-      onClose();
-    }).catch(console.error);
+    })
+      .then(() => {
+        setNoteText("");
+        setRecordingData(null);
+        setIsRecording(false);
+        onClose();
+      })
+      .catch(console.error);
   };
 
   return (
@@ -460,7 +490,11 @@ function PostActionSheet({
                 {isSubmitting ? (
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     <Loader2 className="h-4 w-4" />
                   </motion.div>
@@ -542,7 +576,13 @@ function EmptyState() {
 // Friend Photo Component
 // ──────────────────────────────────────────────
 
-function FriendPhoto({ name, storageId }: { name: string; storageId?: string }) {
+function FriendPhoto({
+  name,
+  storageId,
+}: {
+  name: string;
+  storageId?: string;
+}) {
   const [hasError, setHasError] = useState(false);
 
   if (!storageId || hasError) {
@@ -577,17 +617,25 @@ function FriendPhoto({ name, storageId }: { name: string; storageId?: string }) 
 // Status Indicator Component
 // ──────────────────────────────────────────────
 
-function StatusIndicator({ statusLabel, statusDisplay, statusColor }: {
+function StatusIndicator({
+  statusLabel,
+  statusDisplay,
+  statusColor,
+}: {
   statusLabel: string;
   statusDisplay: string;
   statusColor: string;
 }) {
   const getStatusColor = () => {
     switch (statusColor) {
-      case "gray": return "var(--gray)";
-      case "amber": return "var(--amber)";
-      case "red": return "var(--red)";
-      default: return "var(--gray)";
+      case "gray":
+        return "var(--gray)";
+      case "amber":
+        return "var(--amber)";
+      case "red":
+        return "var(--red)";
+      default:
+        return "var(--gray)";
     }
   };
 
@@ -624,12 +672,21 @@ interface ActionButtonProps {
   delay?: number;
 }
 
-function ActionButton({ onClick, icon, label, variant, delay = 0 }: ActionButtonProps) {
-  const baseStyles = "flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all";
+function ActionButton({
+  onClick,
+  icon,
+  label,
+  variant,
+  delay = 0,
+}: ActionButtonProps) {
+  const baseStyles =
+    "flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all";
   const variantStyles = {
     primary: "bg-[var(--accent)] text-white hover:opacity-90 hover:shadow-lg",
-    secondary: "border border-[var(--border)] hover:bg-[var(--muted)] hover:shadow",
-    tertiary: "border border-[var(--border)] hover:bg-[var(--muted)] hover:shadow",
+    secondary:
+      "border border-[var(--border)] hover:bg-[var(--muted)] hover:shadow",
+    tertiary:
+      "border border-[var(--border)] hover:bg-[var(--muted)] hover:shadow",
   };
 
   return (
@@ -676,7 +733,9 @@ export default function DashboardPage() {
     setShowPostAction(true);
   };
 
-  const handleSnooze = async (option: "tomorrow" | "this_weekend" | "next_week") => {
+  const handleSnooze = async (
+    option: "tomorrow" | "this_weekend" | "next_week",
+  ) => {
     if (!todayCard?._id) return;
     await snoozeMutation({
       ranking_id: todayCard._id,
