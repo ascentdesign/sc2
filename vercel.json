@@ -6,11 +6,11 @@
   "framework": "nextjs",
   "installCommand": "npm install --legacy-peer-deps",
   "env": {
-    "NEXT_PUBLIC_CONVEX_URL": "@stayslate_convex_url",
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "@stayslate_clerk_publishable_key",
-    "CLERK_SECRET_KEY": "@stayslate_clerk_secret_key",
-    "ANTHROPIC_API_KEY": "@stayslate_anthropic_key",
-    "OPENAI_API_KEY": "@stayslate_openai_key"
+    "NEXT_PUBLIC_CONVEX_URL": "https://artful-seahorse-860.convex.cloud",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJvZm91bmQtd29tYmF0LTcuY2xlcmsuYWNjb3VudHMuZGV2JA",
+    "CLERK_SECRET_KEY": "sk_test_e6UAxIhnSW8amORzaXhYhKId4v4UiE0T6kcmlqaEt4",
+    "ANTHROPIC_API_KEY": "sk-ant-api03-dummy",
+    "OPENAI_API_KEY": "sk-dummy"
   },
   "headers": [
     {
