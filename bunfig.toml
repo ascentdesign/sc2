@@ -1,0 +1,8 @@
+[install]
+# Use Bun's native resolver
+peer = false
+optional = true
+
+[run]
+# Silence unnecessary output
+silent = false

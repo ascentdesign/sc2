@@ -1,0 +1,19 @@
+{
+  "name": "stayclose",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "cd apps/web && npm run dev",
+    "build": "cd apps/web && npm run build",
+    "convex:dev": "cd packages/convex && npx convex dev",
+    "convex:deploy": "cd packages/convex && npx convex deploy",
+    "web": "cd apps/web && npm run dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

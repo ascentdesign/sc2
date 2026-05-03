@@ -1,0 +1,11 @@
+[NX Daemon Server] - 2026-05-03T19:08:48.682Z - Started listening on: \\.\pipe\nx\C:\Users\daryl\AppData\Local\Temp\52526ee80a525041fa72\d.sock
+[NX Daemon Server] - 2026-05-03T19:08:48.685Z - [WATCHER]: Subscribed to changes within: C:\code\stayclose (native)
+[NX Daemon Server] - 2026-05-03T19:08:48.686Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2026-05-03T19:08:48.687Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2026-05-03T19:08:48.689Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2026-05-03T19:08:48.691Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2026-05-03T19:08:48.692Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2026-05-03T19:08:48.692Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2026-05-03T19:08:48.693Z - [WATCHER]: Stopping the watcher for C:\code\stayclose (sources)
+[NX Daemon Server] - 2026-05-03T19:08:48.693Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2026-05-03T19:08:48.693Z - [WATCHER]: Stopping the watcher for C:\code\stayclose (outputs)

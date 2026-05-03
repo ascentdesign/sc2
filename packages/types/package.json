@@ -1,0 +1,14 @@
+{
+  "name": "@stayclose/types",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  }
+}

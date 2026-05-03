@@ -1,0 +1,41 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "buildCommand": "cd apps/web && npm run build",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs",
+  "installCommand": "npm install --legacy-peer-deps",
+  "env": {
+    "NEXT_PUBLIC_CONVEX_URL": "@stayslate_convex_url",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "@stayslate_clerk_publishable_key",
+    "CLERK_SECRET_KEY": "@stayslate_clerk_secret_key",
+    "ANTHROPIC_API_KEY": "@stayslate_anthropic_key",
+    "OPENAI_API_KEY": "@stayslate_openai_key"
+  },
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ]
+}

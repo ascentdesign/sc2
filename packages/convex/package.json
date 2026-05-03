@@ -1,0 +1,15 @@
+{
+  "name": "@stayclose/convex",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "convex deploy",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "convex": "^1.12.0"
+  }
+}
